@@ -1,4 +1,4 @@
-# TikTokSlideshow-Downloader
+# TikTok Liked/Saved Content Downloader 
 
 Script to automatically download all of your liked and bookmarked videos from TikTok using Python, Selenium, and Docker
 
@@ -29,11 +29,11 @@ docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY=${DISPLAY:-:0.0
 
 This assumes the JSON file downloaded above is available at `./user.json`. Adjust mounts if necessary.
 
-Bookmarked content will be saved to `./out/Bookmarked` and liked content saved to `./out/Liked`. Videos will be saved as `<id>.mp4`, for example `7348616153331256619.mp4`. Slideshows will be saved as images in a numeric folder with each image image having file name `<index>.jpg`; for example a 3-image slideshow with id 7348616153331256619 will be saved in folder `7348616153331256619` with 3 files `01.jpg`, `02.jpg`, `03.jpg`. Slideshow audio is not yet downloaded.
+Bookmarked content will be saved to `out/Bookmarked` and liked content saved to `out/Liked`. Videos will be saved as `<id>.mp4`, for example `7348616153331256619.mp4`. Slideshows will be saved as images in a numeric folder with each image having file name `<index>.jpg`; for example a 3-image slideshow with id 7348616153331256619 will be saved in folder `7348616153331256619` as 3 files named `01.jpg`, `02.jpg`, and `03.jpg`. Images are numbered in the order they appear in the slideshow. Slideshow audio is not yet downloaded.
 
-Your cookies will be saved to `./cookies.json` and used next time the script is ran so you will not have to log in again.
+Your cookies will be saved to `cookies.json` and used next time the script is ran so you will not have to log in again.
 
-# Build from source
+## Build from source
 
 You can build the docker image from source instead of pulling it:
 
@@ -53,7 +53,7 @@ docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY=${DISPLAY:-:0.0
     tiktok-save
 ```
 
-# Run with python
+## Run with python
 
 You can run the python script directly instead of using docker, although I have not tested this outside docker:
 
@@ -69,3 +69,12 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 apt update
 apt install -y ./google-chrome-stable_current_amd64.deb
 ```
+
+## TODO
+
+- Download uploaded/reposted content as well
+- Toggle/choose between downloading liked or bookmarked content
+- Download slideshow audio
+- Target specific post to download
+- Make providing cookies and logs optional
+- Better error detection for slideshows
